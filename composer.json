@@ -1,0 +1,12 @@
+{
+    "name": "datasdk/categories",
+    "description": "Categories model and traits for MyProject",
+    "autoload": {
+        "psr-4": {
+            "MyProject\\Categories\\": "src/"
+        }
+    },
+    "require": {
+        "php": "^8.0"
+    }
+}

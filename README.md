@@ -1,8 +1,8 @@
 # Categories
 
-Denne pakke indeholder en `Categories` model og et trait, der kan bruges til at koble kategorier på andre Eloquent modeller via en polymorf many-to-many relation.
+This package provides a `Categories` model and trait that can be used to attach categories to other Eloquent models through a polymorphic many-to-many relationship.
 
-Kategorimodellen bruger nested set struktur og understøtter oversættelser, slugs og tags via de traits/pakker, som projektet allerede bruger.
+The category model supports nested set structure, translations, slugs, and tags through the traits and packages already used by the project.
 
 ## Installation
 
@@ -10,15 +10,15 @@ Kategorimodellen bruger nested set struktur og understøtter oversættelser, slu
 composer require datasdk/categories
 ```
 
-## Brug Kategorimodellen
+## Using The Category Model
 
-Importer modellen sådan:
+Import the model like this:
 
 ```php
 use MyProject\Categories\Models\Categories;
 ```
 
-Eksempel:
+Example:
 
 ```php
 $category = Categories::create([
@@ -29,9 +29,9 @@ $category = Categories::create([
 ]);
 ```
 
-## Brug Trait På En Model
+## Usage On A Model
 
-Tilføj traitet på en model, der skal kunne have kategorier:
+Add the trait to a model that should support categories:
 
 ```php
 use MyProject\Categories\Traits\Categories;
@@ -42,11 +42,11 @@ class Post extends Model
 }
 ```
 
-## Relationer
+## Relationships
 
 `categories()`
 
-Returnerer modellens kategorier via tabellen `categories_models`.
+Returns the model's categories through the `categories_models` table.
 
 ```php
 $post->categories;
@@ -54,7 +54,7 @@ $post->categories;
 
 `entries($class)`
 
-Bruges fra kategorimodellen til at hente modeller af en bestemt klasse, der er tilknyttet kategorien.
+Used from the category model to retrieve models of a specific class that are attached to the category.
 
 ```php
 $category->entries(Post::class)->get();
@@ -62,13 +62,13 @@ $category->entries(Post::class)->get();
 
 `model()`
 
-Returnerer den polymorfe modelrelation fra kategorimodellen.
+Returns the polymorphic model relationship from the category model.
 
-## Metoder På Trait
+## Trait Methods
 
 `setCategories($categoryIds)`
 
-Synkroniserer en model med en liste af kategori-id'er.
+Syncs a model with a list of category IDs.
 
 ```php
 $post->setCategories([1, 2, 3]);
@@ -76,7 +76,7 @@ $post->setCategories([1, 2, 3]);
 
 `setCategory($categoryIds)`
 
-Alias til `setCategories()`.
+Alias for `setCategories()`.
 
 ```php
 $post->setCategory([1]);
@@ -84,7 +84,7 @@ $post->setCategory([1]);
 
 `attachCategory(...$categories)`
 
-Tilføjer en eller flere kategorier uden at fjerne eksisterende kategorier.
+Adds one or more categories without removing existing categories.
 
 ```php
 $post->attachCategory($category);
@@ -95,7 +95,7 @@ $post->attachCategory(1, 2, 3);
 
 `withCategories(array $ids)`
 
-Finder modeller, der er knyttet til en eller flere kategorier.
+Returns models attached to one or more categories.
 
 ```php
 Post::withCategories([1, 2])->get();
@@ -103,17 +103,17 @@ Post::withCategories([1, 2])->get();
 
 `withCategory($id)`
 
-Finder modeller, der er knyttet til én kategori.
+Returns models attached to a single category.
 
 ```php
 Post::withCategory(1)->get();
 ```
 
-## Metoder På Categories Modellen
+## Category Model Methods
 
 `getAllChildren($ids = null)`
 
-Returnerer alle underkategorier for en eller flere kategorier. Metoden accepterer både id'er og slugs.
+Returns all child category IDs for one or more categories. The method accepts both IDs and slugs.
 
 ```php
 $ids = Categories::getAllChildren([1, 5]);
@@ -121,17 +121,17 @@ $ids = Categories::getAllChildren([1, 5]);
 
 `addInclude(string $type, string $class)`
 
-Registrerer en modelklasse som en kategori-include type i Laravel containeren.
+Registers a model class as a category include type in the Laravel container.
 
 ```php
 Categories::addInclude('posts', Post::class);
 ```
 
-Når requesten indeholder `children=posts`, kan kategorien derefter hente relaterede entries for den type.
+When the request contains `children=posts`, the category can then retrieve related entries for that type.
 
 ## Tags
 
-Kategorimodellen bruger Spaties `HasTags` trait. Brug derfor Spaties metoder, for eksempel:
+The category model uses Spatie's `HasTags` trait. Use Spatie's tag methods, for example:
 
 ```php
 $category->syncTags(['featured', 'frontpage']);

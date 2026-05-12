@@ -1,6 +1,7 @@
 {
     "name": "datasdk/categories",
     "description": "Categories model and traits for MyProject",
+    "license": "MIT",
     "autoload": {
         "psr-4": {
             "MyProject\\Categories\\": "src/"

@@ -1,12 +1,13 @@
 <?php 
 
-namespace MyProject\Categories\Models;
+namespace DataSDK\Categories\Models;
 
 use App\Contracts\Abstracts\ActionModel;
-Use App\Traits\Nestable\Nestable;
+Use DataSDK\Tools\Traits\Nestable;
 use Illuminate\Database\Eloquent\Model;
-use App\Traits\Language\Language;
-use App\Contracts\Interfaces\CategoryInterface;
+use DataSDK\Tools\Traits\Language;
+use DataSDK\Categories\Contracts\CategoryInterface;
+use DataSDK\Categories\Database\Factories\CategoriesFactory;
 use Spatie\Tags\HasTags;
 
 
@@ -127,6 +128,11 @@ class Categories extends ActionModel implements CategoryInterface {
             return $class;
         });
 
+    }
+
+    protected static function newFactory()
+    {
+        return CategoriesFactory::new();
     }
 
 }

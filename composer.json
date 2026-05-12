@@ -1,13 +1,23 @@
 {
     "name": "datasdk/categories",
-    "description": "Categories model and traits for MyProject",
+    "description": "Categories model and traits for DataSDK",
     "license": "MIT",
+    "version": "1.0.0",
     "autoload": {
         "psr-4": {
-            "MyProject\\Categories\\": "src/"
+            "DataSDK\\Categories\\": "src/",
+            "DataSDK\\Categories\\Database\\Factories\\": "database/factories/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "DataSDK\\Categories\\CategoriesServiceProvider"
+            ]
         }
     },
     "require": {
+        "datasdk/tools": "^1.0",
         "php": "^8.0"
     }
 }

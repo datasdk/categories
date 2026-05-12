@@ -1,9 +1,9 @@
 <?php
 
-namespace MyProject\Categories\Traits;
+namespace DataSDK\Categories\Traits;
 
-use MyProject\Categories\Models\Categories as CategoryModel;
-use MyProject\Categories\Models\CategoriesModels;
+use DataSDK\Categories\Models\Categories as CategoryModel;
+use DataSDK\Categories\Models\CategoriesModels;
 
 trait Categories
 {
